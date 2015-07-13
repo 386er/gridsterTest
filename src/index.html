@@ -17,9 +17,19 @@
         <ul></ul>
     </div>
 
-    <button style ="margin-top:30px" id="destroy"> Click Me </button>
+	<div style="width:200px; position relative; margin:auto; text-align:center">
+		<a href="#" style ="margin-top:30px" id="destroy"> Click Me </a>
+	</div>
+	
+	
+	    <div class="newGridster" style="border:3px dashed grey; padding-top:50px; text-align:center;font-size:96px;vertical-align:middle; height:155px; margin-top:30px">
+        +
+		</div>
 	
 </div> 
+
+
+<!-- http://www.jqueryrain.com/?zETM2MpT -->
 
 
     <script src="./library/jquery.gridster.js" type="text/javascript" charset="utf-8"></script>
@@ -40,10 +50,10 @@
       }).data('gridster');
 
       var widgets = [
-          ['<div>0</div>', 1, 2],
-          ['<div>1</div>', 3, 2],
-          ['<div>2</div>', 3, 2],
-          ['<div>3</div>', 2, 1],
+          ['<div>0</div>', 2, 4],
+          ['<div>1</div>', 4, 2],
+          ['<div>2</div>', 4, 2],
+          ['<div>3</div>', 3, 1],
       ];
 
       $.each(widgets, function(i, widget){
