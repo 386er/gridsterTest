@@ -51,7 +51,19 @@ body {
     -o-transition: opacity .6s;
     -ms-transition: opacity .6s;
     transition: opacity .6s;
+
+
 }
+
+.placeholder-box {
+    border: 3px dashed gray;
+    padding-top: 50px; 
+    text-align:center;
+    font-size: 96px;
+    vertical-align: middle;
+    height: 155px
+}
+
 
 .gridster .gs-w {
     background: #DDD;

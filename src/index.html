@@ -4,8 +4,10 @@
 <head>
   <title>Demo &raquo; Add widgets dynamically &raquo; gridster.js</title>
   <script src="./library/jquery.js"></script>
+  <script src="./library/jquery.gridster.js" type="text/javascript" charset="utf-8"></script>
   <link rel="stylesheet" type="text/css" href="./style/jquery.gridster.css">
   <link rel="stylesheet" type="text/css" href="./style/demo.css">
+
 </head>
 
 <body>
@@ -13,8 +15,9 @@
 
 <div class="wrapper" style="width:900px; position:relative; margin:auto;">
 
-    <div class="gridster" style="left:10px">
+    <div class="gridster placeholder-box" style="left:10px">
         <ul></ul>
+        <a class="adder">+</a>
     </div>
 
 	<div style="width:200px; position relative; margin:auto; text-align:center">
@@ -22,9 +25,9 @@
 	</div>
 	
 	
-	    <div class="newGridster" style="border:3px dashed grey; padding-top:50px; text-align:center;font-size:96px;vertical-align:middle; height:155px; margin-top:30px">
+<!-- 	    <div class="newGridster" style="border:3px dashed grey; padding-top:50px; text-align:center;font-size:96px;vertical-align:middle; height:155px; margin-top:30px">
         +
-		</div>
+		</div> -->
 	
 </div> 
 
@@ -32,62 +35,8 @@
 <!-- http://www.jqueryrain.com/?zETM2MpT -->
 
 
-    <script src="./library/jquery.gridster.js" type="text/javascript" charset="utf-8"></script>
 
-    <script type="text/javascript" id="code">
-    var gridster;
-	
-	var widgets1 = [
-          ['<div>0</div>', 8, 4]
-      ];
-	  
-	var widgets2 = [
-          ['<div>0</div>', 8, 2],
-		  ['<div>1</div>', 8, 2]
-      ];
-	  
-	var widgets3 = [
-          ['<div>0</div>', 4, 2],
-		  ['<div>1</div>', 4, 2],
-		  ['<div>2</div>', 8, 2]
-      ];
-	  
-	  var widgets4 = [
-          ['<div>0</div>', 4, 3],
-          ['<div>1</div>', 4, 3],
-          ['<div>2</div>', 4, 3],
-          ['<div>3</div>', 4, 3],
-      ];
+<script src="./modules/gridsterCode.js" type="text/javascript"></script>
 
-	  
-	  
-
-    $(function(){
-
-      gridster = $(".gridster > ul").gridster({
-          widget_margins: [5, 5],
-          widget_base_dimensions: [100, 55],
-		  resize: {
-            enabled: true,
-            max_size: [4, 4],
-            min_size: [2, 2]
-          }
-      }).data('gridster');
-
-	  var widgets = widgets4;
-	  
-      $.each(widgets, function(i, widget){
-          gridster.add_widget.apply(gridster, widget)
-      });
-	  
-	  $('#destroy').click(function(){
-	  
-		gridster.disable();
-		$('.gridster .ready ul').css({'background-color':'white'});
-	  
-	  });
-
-    });
-    </script>
 </body>
 </html>
