@@ -58,18 +58,31 @@ body {
 
 .wrapper {
 
-	width:900px;
+	width:680px;
 	position:relative;
 	margin:auto;
 	text-align:center;
 }
 
-.addBlock {
 
+.add-block-wrapper{
+
+
+
+}
+.addBlock {
 	margin-top: 50px;
+	margin:auto;
+	position: relative;
 	display: block;
 	font-size: 70px;
+	cursor: pointer;
+	width:80px;
+	color:gray;
+}
 
+.addBlock:hover {
+	color:DodgerBlue;
 }
 
 

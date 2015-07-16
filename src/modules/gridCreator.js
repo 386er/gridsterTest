@@ -13,21 +13,21 @@ gridConfig = {
 				autogenerate_stylesheet: true,
 				resize: {
 					enabled: true,
-					max_size: [4, 4],
+					max_size: [8, 8],
 					min_size: [1, 1]
 					}
 				}	
 		
 		
 widgets4 = [
-			['<div></div>', 4, 2],
-			['<div></div>', 4, 2],
-			['<div></div>', 4, 2],
-			['<div></div>', 4, 2],
+			['<div></div>', 3, 2],
+			['<div></div>', 3, 2],
+			['<div></div>', 3, 2],
+			['<div></div>', 3, 2],
 		];
 					
 gridTemplate =  '<div class="gridster placeholder-box" style="left:10px">' +
-				'<ul class="{{currentlement}}"></ul>' +
+				'<ul class="{{currentElement}}"></ul>' +
 				'</div>';
 		
 var data = {'currentElement' : 0};			
