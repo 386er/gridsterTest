@@ -4,6 +4,7 @@
 <head>
 	<title>Demo &raquo; Add widgets dynamically &raquo; gridster.js</title>
 	<script src="./library/jquery.js"></script>
+	<script src="./library/mustache.js"></script>
 	<script src="./library/jquery.gridster.js" type="text/javascript" charset="utf-8"></script>
 	<link rel="stylesheet" type="text/css" href="./style/jquery.gridster.css">
 	<link rel="stylesheet" type="text/css" href="./style/demo.css">
@@ -13,17 +14,12 @@
 <body>
 
 
-<div class="wrapper" style="width:900px; position:relative; margin:auto;">
+<div class="wrapper">
 
-			<div class="gridster placeholder-box" style="left:10px">
-					<ul class="1"></ul>
-					<a class="adder">+</a>
-			</div>
+<div class="sub-wrapper"></div>
 
-		<div style="width:200px; position relative; margin:auto; text-align:center">
-			<a href="#" style ="margin-top:30px" id="destroy"> Click Me </a>
-		</div>
-	
+<a class="addBlock"> + </a>
+
 </div> 
 
 
@@ -31,7 +27,7 @@
 
 
 
-<script src="./modules/gridsterCode.js" type="text/javascript"></script>
+<script src="./modules/gridCreator.js" type="text/javascript"></script>
 
 </body>
 </html>
