@@ -25,11 +25,9 @@ widgets4 = [
 			['<div></div>', 4, 2],
 			['<div></div>', 4, 2],
 		];
-			
-			
-		
+					
 gridTemplate =  '<div class="gridster placeholder-box" style="left:10px">' +
-				'<ul class="{{currentElement}}"></ul>' +
+				'<ul class="{{currentlement}}"></ul>' +
 				'</div>';
 		
 var data = {'currentElement' : 0};			
@@ -39,11 +37,6 @@ var widgets = widgets4;
 var bindGridsterToElement = function(index) {
 	gridster = $(".gridster > ul." + index).gridster(gridConfig).data('gridster');
 };	
-
-var html = Mustache.to_html(gridTemplate, data)
-
-$('.sub-wrapper').append(html);
-$('.gridster').removeClass('placeholder-box');
 
 
 $('.addBlock').click(function() {
