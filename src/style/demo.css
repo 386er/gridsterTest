@@ -15,14 +15,14 @@ ul {
 
 
 body {
-    font-size: 16px;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: #444;
-    margin: 30px 40px;
+	font-size: 16px;
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+	color: #444;
+	margin: 30px 40px;
 }
 
 .controls {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 /*/
@@ -30,28 +30,28 @@ body {
 /*/
 
 .gridster ul {
-    background-color: #EFEFEF;
+	background-color: #EFEFEF;
 }
 
 .gridster div {
-    font-size: 1em;
-    font-weight: bold;
-    text-align: center;
-    line-height: 100%;
+	font-size: 1em;
+	font-weight: bold;
+	text-align: center;
+	line-height: 100%;
 	padding-top: 5px;
 }
 
 
 .gridster {
-    margin: 0 auto;
+	margin: 0 auto;
 
-    opacity: .8;
+	opacity: .8;
 
-    -webkit-transition: opacity .6s;
-    -moz-transition: opacity .6s;
-    -o-transition: opacity .6s;
-    -ms-transition: opacity .6s;
-    transition: opacity .6s;
+	-webkit-transition: opacity .6s;
+	-moz-transition: opacity .6s;
+	-o-transition: opacity .6s;
+	-ms-transition: opacity .6s;
+	transition: opacity .6s;
 
 
 }
@@ -71,7 +71,7 @@ body {
 
 }
 .addBlock {
-	margin-top: 50px;
+	margin-top: 710px;
 	margin:auto;
 	position: relative;
 	display: block;
@@ -88,27 +88,46 @@ body {
 
 
 .placeholder-box {
-    border: 3px dashed gray;
-    padding-top: 50px; 
-    text-align:center;
-    font-size: 96px;
-    vertical-align: middle;
-    height: 155px
+	border: 2px dotted gray;
+	border-radius:15px;
+	margin-top: 50px;
+	padding-top:20px;
+	text-align:center;
+	font-size: 96px;
+	vertical-align: middle;
+	height: 155px
 }
+
+
+.selector-box {
+	border: 2px dotted gray;
+	margin: 5px;
+	width:40px;
+	font-size:60px;
+	border-radius:20px;
+	padding:0px 15px 0px 15px;
+}
+
+.selector-box:hover {
+	border: 2px dotted DodgerBlue;
+	color:DodgerBlue;
+	cursor: pointer;
+}
+
 
 
 .gridster .gs-w {
-    background: #DDD;
-    cursor: pointer;
+	background: #DDD;
+	cursor: pointer;
 }
 
 .gridster .player {
-    background: #BBB;
+	background: #BBB;
 }
 
 
 .gridster .preview-holder {
-    border: none!important;
-    background: red!important;
+	border: none!important;
+	background: red!important;
 }
 
