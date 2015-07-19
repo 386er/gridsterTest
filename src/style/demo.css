@@ -71,7 +71,7 @@ body {
 
 }
 .addBlock {
-	margin-top: 710px;
+	margin-top: 50px !important;
 	margin:auto;
 	position: relative;
 	display: block;
@@ -82,7 +82,7 @@ body {
 }
 
 .addBlock:hover {
-	color:DodgerBlue;
+	color:black;
 }
 
 
@@ -101,6 +101,7 @@ body {
 
 .selector-box {
 	border: 2px dotted gray;
+	color:gray;
 	margin: 5px;
 	width:40px;
 	font-size:60px;
@@ -109,8 +110,8 @@ body {
 }
 
 .selector-box:hover {
-	border: 2px dotted DodgerBlue;
-	color:DodgerBlue;
+	border: 2px dotted black;
+	color:black;
 	cursor: pointer;
 }
 

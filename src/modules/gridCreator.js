@@ -81,13 +81,7 @@ $('.addBlock').click(function() {
 
 	var html = Mustache.to_html(selecterTemplate)
 	$('.sub-wrapper').append(html);
-	bindBox();
-	//bindGridsterToElement(data.currentElement);
-/*	$('.gridster').removeClass('placeholder-box');*/
-	//$.each(widgets, function(i, widget){
-	//					gridster.add_widget.apply(gridster, widget)  
-	//			});
-	
+	bindBox();	
 });
 
 var bindBox = function() { 
@@ -106,6 +100,9 @@ var bindBox = function() {
 	$.each(widgets[numOfElements], function(i, widget){
 						gridster.add_widget.apply(gridster, widget)  
 	});
+
+
+	$('.' + data.currentElement).find('div').colorPicker();
 	
 });
 
