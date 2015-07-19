@@ -102,11 +102,12 @@ body {
 .selector-box {
 	border: 2px dotted gray;
 	color:gray;
-	margin: 5px;
-	width:40px;
+	margin: 10px;
+	width:50px;
 	font-size:60px;
-	border-radius:20px;
+	border-radius:50px;
 	padding:0px 15px 0px 15px;
+
 }
 
 .selector-box:hover {

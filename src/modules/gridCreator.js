@@ -70,7 +70,7 @@ gridTemplate =
 		
 var data = {'currentElement' : 0};			
 				
-/*var widgets = widgets4;*/
+
 
 var bindGridsterToElement = function(index) {
 	gridster = $(".gridster > ul." + index).gridster(gridConfig).data('gridster');
@@ -100,7 +100,6 @@ var bindBox = function() {
 	$.each(widgets[numOfElements], function(i, widget){
 						gridster.add_widget.apply(gridster, widget)  
 	});
-
 
 	$('.' + data.currentElement).find('div').colorPicker();
 	
