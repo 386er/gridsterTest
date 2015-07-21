@@ -35,29 +35,29 @@ define(['jquery',
 		that.widgets = {
 
 			1 : [
-					['<div></div>', 6, 4]
+					['<div><i class="cancel-box">x</i></div>', 6, 4]
 			],		
 			2:  [
-					['<div></div>', 6, 2],
-					['<div></div>', 6, 2]
+					['<div><i class="cancel-box">x</i></div>', 6, 2],
+					['<div><i class="cancel-box">x</i></div>', 6, 2]
 			],	
 			3: [
-					['<div></div>', 3, 2],
-					['<div></div>', 3, 2],
-					['<div></div>', 6, 2]
+					['<div><i class="cancel-box">x</i></div>', 3, 2],
+					['<div><i class="cancel-box">x</i></div>', 3, 2],
+					['<div><i class="cancel-box">x</i></div>', 6, 2]
 			],
 			4:  [
-					['<div></div>', 3, 2],
-					['<div></div>', 3, 2],
-					['<div></div>', 3, 2],
-					['<div></div>', 3, 2],
+					['<div><i class="cancel-box">x</i></div>', 3, 2],
+					['<div><i class="cancel-box">x</i></div>', 3, 2],
+					['<div><i class="cancel-box">x</i></div>', 3, 2],
+					['<div><i class="cancel-box">x</i></div>', 3, 2],
 			],
 			5:  [
-					['<div></div>', 3, 1],
-					['<div></div>', 1, 3],
-					['<div></div>', 1, 3],
-					['<div></div>', 1, 3],
-					['<div></div>', 3, 2],
+					['<div><i class="cancel-box">x</i></div>', 3, 1],
+					['<div><i class="cancel-box">x</i></div>', 1, 3],
+					['<div><i class="cancel-box">x</i></div>', 1, 3],
+					['<div><i class="cancel-box">x</i></div>', 1, 3],
+					['<div><i class="cancel-box">x</i></div>', 3, 2],
 			]		
 		};
 
@@ -108,6 +108,21 @@ define(['jquery',
 				$.each(that.widgets[numOfElements], function(i, widget){
 									that.gridster.add_widget.apply(that.gridster, widget)  
 				});
+				
+				$('.cancel-box').click(function() {
+					
+
+					
+					if(this.parentElement.parentElement.children.length < 2) {
+
+						that.gridster.destroy();
+						$(this.parentElement.parentElement.parentElement).fadeOut(1800);
+					}
+					
+					that.gridster.remove_widget(this.parentElement, 10);
+					
+				});
+				
 				$('.' + that.data.currentElement).find('div').colorPicker();
 				
 			});

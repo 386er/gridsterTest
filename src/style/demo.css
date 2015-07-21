@@ -89,13 +89,25 @@ body {
 
 .placeholder-box {
 	border: 2px dotted gray;
-	border-radius:15px;
+
 	margin-top: 50px;
 	padding-top:20px;
 	text-align:center;
 	font-size: 96px;
 	vertical-align: middle;
 	height: 155px
+}
+
+.cancel-box {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	font-family: impact;
+	font-style: normal;
+}
+
+.cancel-box:hover{
+	color: gray;
 }
 
 

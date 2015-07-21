@@ -1568,7 +1568,7 @@
     * @param {Function} callback Function executed when the widget is removed.
     * @return {Class} Returns the instance of the Gridster Class.
     */
-    fn.remove_widget = function(el, silent, callback) {
+    fn.remove_widget = function(el, duration, silent, callback) {
         var $el = el instanceof $ ? el : $(el);
         var wgd = $el.coords().grid;
 
@@ -1585,7 +1585,7 @@
 
         this.remove_from_gridmap(wgd);
 
-        $el.fadeOut($.proxy(function() {
+        $el.fadeOut(duration,$.proxy(function() {
             $el.remove();
 
             if (!silent) {
