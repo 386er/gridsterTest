@@ -20,6 +20,7 @@ define(['jquery',
 			that = {}, my = {};
 		
 		
+		that.el ='.sub-wrapper'
 		that.gridConfiguration = {
 					widget_margins: [5, 6],
 					widget_base_dimensions: [100, 55],
@@ -30,6 +31,8 @@ define(['jquery',
 						min_size: [1, 1]
 						}
 		};
+		
+		that.gridster = {};
 		
 		
 		that.widgets = {
@@ -78,7 +81,7 @@ define(['jquery',
 					
 
 		that.bindGridsterToElement = function(index) {
-			that.gridster = $(".gridster > ul." + index).gridster(that.gridConfiguration).data('gridster');
+			that.gridster[index] = $(".gridster > ul." + index).gridster(that.gridConfiguration).data('gridster');
 		};	
 
 
@@ -92,43 +95,56 @@ define(['jquery',
 		};
 		
 		
+		my.bindCancelButton = function() {
+			$('.cancel-box').click(function() {		
+				var 
+					ul = $(this).parents('ul'),
+					i = parseInt(ul.attr('class'));
+				
+				if( ul.children().length < 2) {
+					that.gridster[i].destroy();
+					ul.parents('.gridster').fadeOut(10);
+				}
+				that.gridster[i].remove_widget(this.parentElement, 10);	
+			});			
+		};
+		
+		
 		my.bindBox = function() { 
 			$('.selector-box').click( function() {
 
-				that.data.currentElement++;
-				var html = Mustache.to_html(that.gridTemplate, that.data)
-				var numOfElements = parseInt(this.dataset.key);
-				var parent = $(this.parentElement)
+				that.data.currentElement += 1;
+				
+				var
+					index = that.data.currentElement,
+					html = Mustache.to_html(that.gridTemplate, that.data),
+					numOfElements = parseInt(this.dataset.key),
+					parent = $(this.parentElement);
+					
 				parent.removeClass('placeholder-box');
 				parent.addClass('gridster')
 				parent.html(html)
-				$('.sub-wrapper').append(html);
-				that.bindGridsterToElement(that.data.currentElement);
+				
+				
+				debugger;
+/* 				$('.sub-wrapper').append(html); */
+				that.$el.append(html);
+				that.bindGridsterToElement(index);
 
 				$.each(that.widgets[numOfElements], function(i, widget){
-									that.gridster.add_widget.apply(that.gridster, widget)  
+									console.log(index, that.gridster[index]);
+									that.gridster[index].add_widget.apply(that.gridster[index], widget)  
 				});
 				
-				$('.cancel-box').click(function() {
-					
-
-					
-					if(this.parentElement.parentElement.children.length < 2) {
-
-						that.gridster.destroy();
-						$(this.parentElement.parentElement.parentElement).fadeOut(1800);
-					}
-					
-					that.gridster.remove_widget(this.parentElement, 10);
-					
-				});
-				
+				my.bindCancelButton();
+			
 				$('.' + that.data.currentElement).find('div').colorPicker();
 				
 			});
 
 		};
 		
+		that = new (Backbone.View.extend(that))();
 		return that;
 			
 	};
