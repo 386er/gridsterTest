@@ -20,7 +20,7 @@ define(['jquery',
 			that = {}, my = {};
 		
 		
-		that.el ='.sub-wrapper'
+		that.el ='.wrapper'
 		that.gridConfiguration = {
 					widget_margins: [5, 6],
 					widget_base_dimensions: [100, 55],
@@ -34,6 +34,10 @@ define(['jquery',
 		
 		that.gridster = {};
 		
+		that.events = {
+			'click .addBlock': 'bindAddButton',
+			'click .freeze-block': 'bindFreezeButton'
+		};
 		
 		that.widgets = {
 
@@ -63,9 +67,17 @@ define(['jquery',
 					['<div><i class="cancel-box">x</i></div>', 3, 2],
 			]		
 		};
+		
+		
+		that.call = function() {
+			
+			console.log('peter')
+			
+		}
 
 		
-		that.selecterTemplate = '<div class="placeholder-box" style="left:10px">' +
+		that.selecterTemplate = 
+						'<div class="placeholder-box" style="left:10px">' +
 						'<a class="selector-box" data-key="1">1</a>' +
 						'<a class="selector-box" data-key="2">2</a>' +
 						'<a class="selector-box" data-key="3">3</a>' +
@@ -86,17 +98,13 @@ define(['jquery',
 
 
 		that.bindAddButton = function() {
-			$('.addBlock').click(function() {
-
-				var html = Mustache.to_html(that.selecterTemplate)
-				that.$el.append(html);
-				my.bindBox();	
-			});		
+			var html = Mustache.to_html(that.selecterTemplate)
+			that.$el.find('.sub-wrapper').append(html);
+			my.bindBox();	
 		};
 		
 		
 		that.bindFreezeButton = function() {
-			$('.freeze-block').click(function() {
 
 				$('.gridster').find('.cancel-box').toggleClass('hidden');
 				$('.gridster').find('span').toggleClass('hidden');
@@ -106,15 +114,12 @@ define(['jquery',
 				$('.freeze-block').toggleClass('hidden');
 				$('.gridster ul').css({'background-color':'transparent'});
 				
-				
 				var keys = _.keys(that.gridster);
 				keys.forEach(function(key){
 					if (that.gridster[key] !== undefined) {
 						that.gridster[key].disable();
 					}
 				})
-				
-			});		
 		};
 		
 		
