@@ -38,22 +38,22 @@ define(['jquery',
 		that.widgets = {
 
 			1 : [
-					['<div><i class="cancel-box">x</i></div>', 6, 4]
+					['<div><i class="cancel-box">x</i></div>', 6, 3]
 			],		
 			2:  [
 					['<div><i class="cancel-box">x</i></div>', 6, 2],
-					['<div><i class="cancel-box">x</i></div>', 6, 2]
+					['<div><i class="cancel-box">x</i></div>', 6, 1]
 			],	
 			3: [
 					['<div><i class="cancel-box">x</i></div>', 3, 2],
 					['<div><i class="cancel-box">x</i></div>', 3, 2],
-					['<div><i class="cancel-box">x</i></div>', 6, 2]
+					['<div><i class="cancel-box">x</i></div>', 6, 1]
 			],
 			4:  [
 					['<div><i class="cancel-box">x</i></div>', 3, 2],
 					['<div><i class="cancel-box">x</i></div>', 3, 2],
-					['<div><i class="cancel-box">x</i></div>', 3, 2],
-					['<div><i class="cancel-box">x</i></div>', 3, 2],
+					['<div><i class="cancel-box">x</i></div>', 3, 1],
+					['<div><i class="cancel-box">x</i></div>', 3, 1],
 			],
 			5:  [
 					['<div><i class="cancel-box">x</i></div>', 3, 1],
@@ -89,8 +89,31 @@ define(['jquery',
 			$('.addBlock').click(function() {
 
 				var html = Mustache.to_html(that.selecterTemplate)
-				$('.sub-wrapper').append(html);
+				that.$el.append(html);
 				my.bindBox();	
+			});		
+		};
+		
+		
+		that.bindFreezeButton = function() {
+			$('.freeze-block').click(function() {
+
+				$('.gridster').find('.cancel-box').toggleClass('hidden');
+				$('.gridster').find('span').toggleClass('hidden');
+				$('.gridster').find('div').toggleClass('no-hover');
+				$('.gridster').find('div').off('dblclick change');
+				$('.addBlock').toggleClass('hidden');
+				$('.freeze-block').toggleClass('hidden');
+				$('.gridster ul').css({'background-color':'transparent'});
+				
+				
+				var keys = _.keys(that.gridster);
+				keys.forEach(function(key){
+					if (that.gridster[key] !== undefined) {
+						that.gridster[key].disable();
+					}
+				})
+				
 			});		
 		};
 		
@@ -101,9 +124,10 @@ define(['jquery',
 					ul = $(this).parents('ul'),
 					i = parseInt(ul.attr('class'));
 				
-				if( ul.children().length < 2) {
+				if (ul.children().length < 2) {
 					that.gridster[i].destroy();
 					ul.parents('.gridster').fadeOut(10);
+					return;
 				}
 				that.gridster[i].remove_widget(this.parentElement, 10);	
 			});			
@@ -124,21 +148,15 @@ define(['jquery',
 				parent.removeClass('placeholder-box');
 				parent.addClass('gridster')
 				parent.html(html)
-				
-				
-				debugger;
-/* 				$('.sub-wrapper').append(html); */
-				that.$el.append(html);
 				that.bindGridsterToElement(index);
 
 				$.each(that.widgets[numOfElements], function(i, widget){
-									console.log(index, that.gridster[index]);
-									that.gridster[index].add_widget.apply(that.gridster[index], widget)  
+					that.gridster[index].add_widget.apply(that.gridster[index], widget)  
 				});
 				
 				my.bindCancelButton();
 			
-				$('.' + that.data.currentElement).find('div').colorPicker();
+				$('.' + index).find('div').colorPicker();
 				
 			});
 

@@ -17,6 +17,7 @@ define(['jquery',
 
 			var gridCreator = new GridCreator();
 			gridCreator.bindAddButton();
+			gridCreator.bindFreezeButton();
 		}
 	};
 

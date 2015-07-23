@@ -70,6 +70,7 @@ body {
 
 
 }
+.freeze-block,
 .addBlock {
 	margin-top: 50px !important;
 	margin:auto;
@@ -81,6 +82,7 @@ body {
 	color:gray;
 }
 
+.freeze-block:hover,
 .addBlock:hover {
 	color:black;
 }
@@ -91,11 +93,12 @@ body {
 	border: 2px dotted gray;
 
 	margin-top: 50px;
+	margin-bottom:50px;
 	padding-top:20px;
 	text-align:center;
 	font-size: 96px;
 	vertical-align: middle;
-	height: 155px
+	height: 160px
 }
 
 .cancel-box {
@@ -143,5 +146,13 @@ body {
 .gridster .preview-holder {
 	border: none!important;
 	background: red!important;
+}
+
+.hidden {
+	display: none;
+}
+
+.no-hover {
+	cursor:default !important;
 }
 
