@@ -21,7 +21,8 @@ define(['jquery',
 		
 		
 		that.el ='.wrapper';
-		that.gridConfiguration = {
+
+		that.gridsterConfiguration = {
 					widget_margins: [5, 6],
 					widget_base_dimensions: [100, 55],
 					autogenerate_stylesheet: true,
@@ -43,36 +44,42 @@ define(['jquery',
 			'click .selector-box': 'bindBox'
 		};
 		
-		that.widgets = {
+		that.widgetsConfiguration = {
 
 			1 : [
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 6, 3]
-			],		
+					[6, 3]
+			],
+
 			2:  [
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 6, 2],
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 6, 1]
-			],	
+					[6, 2],
+					[6, 1]
+			],
+
 			3: [
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 2],
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 2],
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 6, 1]
+					[3, 2],
+					[3, 2],
+					[6, 1]
 			],
+
 			4:  [
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 2],
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 2],
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 1],
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 1],
+					[3, 2],
+					[3, 2],
+					[3, 1],
+					[3, 1],
 			],
+
 			5:  [
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 1],
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 1, 3],
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 1, 3],
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 1, 3],
-					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 2],
-			]		
+					[3, 1],
+					[1, 3],
+					[1, 3],
+					[1, 3],
+					[3, 2]
+			]	
 		};
+
+		that.widgetTemplate = '<div><i class="hidden cancel-box fa fa-times"></i></div>';
+
 		
-			
 		that.selecterTemplate = 
 						'<div class="placeholder-box" style="left:10px">' +
 							'<div class="button-wrapper">' +
@@ -100,7 +107,7 @@ define(['jquery',
 		};			
 
 		that.bindGridsterToElement = function(index) {
-			that.gridster[index] = $(".gridster > ul." + index).gridster(that.gridConfiguration).data('gridster');
+			that.gridster[index] = $(".gridster > ul." + index).gridster(that.gridsterConfiguration).data('gridster');
 		};	
 
 
@@ -117,12 +124,14 @@ define(['jquery',
 			}
 
 			that.$el.off();
+			that.$el.find('.placeholder-box').remove();
 			$('.gridster').find('span').toggleClass('hidden');
 			$('.gridster').find('div').toggleClass('no-hover');
 			$(document.body).off('dblclick');
 			$('.addBlock').toggleClass('hidden');
 			$('.freeze-block').toggleClass('hidden');
 			$('.gridster ul').css({'background-color':'transparent'});
+
 			
 			var keys = _.keys(that.gridster);
 			keys.forEach(function(key){
@@ -136,13 +145,20 @@ define(['jquery',
 		that.bindCancelButton = function(event) {
 				var 
 					ul = $(event.target).parents('ul'),
-					i = parseInt(ul.attr('class'));
+					i = parseInt(ul.attr('class')),
+					numOfBlocks = that.$el.find('.gridster').length;
 				
 				if (ul.children().length < 2) {
 					that.gridster[i].destroy();
-					ul.parents('.gridster').fadeOut(10);
+					ul.parents('.gridster').fadeOut(10).remove();
+
+					if (numOfBlocks < 2){
+						that.$el.find('.freeze-block').addClass('locked');
+					}
+
 					return;
 				}
+
 				that.gridster[i].remove_widget(event.target.parentElement, 10);		
 		};
 		
@@ -162,7 +178,8 @@ define(['jquery',
 			parent.html(html)
 			that.bindGridsterToElement(index);
 
-			$.each(that.widgets[numOfElements], function(i, widget){
+			$.each(that.widgetsConfiguration[numOfElements], function(i, widget){
+				widget = [that.widgetTemplate].concat(widget)
 				that.gridster[index].add_widget.apply(that.gridster[index], widget)  
 			});
 				
