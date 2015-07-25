@@ -103,6 +103,7 @@ body {
 
 .cancel-box {
 	position: absolute;
+	color:#424242;
 	right: 10px;
 	top: 10px;
 	font-family: impact;
@@ -149,7 +150,7 @@ body {
 }
 
 .hidden {
-	display: none;
+	display: none !important;
 }
 
 .no-hover {

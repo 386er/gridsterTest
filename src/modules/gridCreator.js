@@ -38,35 +38,37 @@ define(['jquery',
 			'click .addBlock': 'bindAddButton',
 			'click .freeze-block': 'bindFreezeButton',
 			'click .cancel-box': 'bindCancelButton',
+			'mouseover .gs-w': 'showCancelButton',
+			'mouseleave .gs-w': 'hideCancelButton',
 			'click .selector-box': 'bindBox'
 		};
 		
 		that.widgets = {
 
 			1 : [
-					['<div><i class="cancel-box">x</i></div>', 6, 3]
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 6, 3]
 			],		
 			2:  [
-					['<div><i class="cancel-box">x</i></div>', 6, 2],
-					['<div><i class="cancel-box">x</i></div>', 6, 1]
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 6, 2],
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 6, 1]
 			],	
 			3: [
-					['<div><i class="cancel-box">x</i></div>', 3, 2],
-					['<div><i class="cancel-box">x</i></div>', 3, 2],
-					['<div><i class="cancel-box">x</i></div>', 6, 1]
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 2],
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 2],
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 6, 1]
 			],
 			4:  [
-					['<div><i class="cancel-box">x</i></div>', 3, 2],
-					['<div><i class="cancel-box">x</i></div>', 3, 2],
-					['<div><i class="cancel-box">x</i></div>', 3, 1],
-					['<div><i class="cancel-box">x</i></div>', 3, 1],
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 2],
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 2],
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 1],
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 1],
 			],
 			5:  [
-					['<div><i class="cancel-box">x</i></div>', 3, 1],
-					['<div><i class="cancel-box">x</i></div>', 1, 3],
-					['<div><i class="cancel-box">x</i></div>', 1, 3],
-					['<div><i class="cancel-box">x</i></div>', 1, 3],
-					['<div><i class="cancel-box">x</i></div>', 3, 2],
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 1],
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 1, 3],
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 1, 3],
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 1, 3],
+					['<div><i class="hidden cancel-box fa fa-times"></i></div>', 3, 2],
 			]		
 		};
 		
@@ -84,8 +86,16 @@ define(['jquery',
 		that.gridTemplate =  '<ul class="{{currentElement}}"></ul>';
 
 		
-		that.data = {'currentElement' : 0};			
-					
+		that.data = {'currentElement' : 0};
+
+		that.showCancelButton = function(event) {
+			$(event.target).find('.cancel-box').removeClass('hidden');
+		};
+		
+
+		that.hideCancelButton = function(event) {
+			$(event.target).find('.cancel-box').addClass('hidden');
+		};			
 
 		that.bindGridsterToElement = function(index) {
 			that.gridster[index] = $(".gridster > ul." + index).gridster(that.gridConfiguration).data('gridster');
@@ -99,10 +109,11 @@ define(['jquery',
 		
 		
 		that.bindFreezeButton = function() {
-			$('.gridster').find('.cancel-box').toggleClass('hidden');
+			that.$el.off();
+			$('.gridster').find('.gs-w').off('mouseover');
 			$('.gridster').find('span').toggleClass('hidden');
 			$('.gridster').find('div').toggleClass('no-hover');
-			$('.gridster').find('div').off('dblclick');
+			$(document.body).off('dblclick');
 			$('.addBlock').toggleClass('hidden');
 			$('.freeze-block').toggleClass('hidden');
 			$('.gridster ul').css({'background-color':'transparent'});
