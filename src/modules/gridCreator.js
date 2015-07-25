@@ -109,8 +109,12 @@ define(['jquery',
 		
 		
 		that.bindFreezeButton = function() {
+
+			if ( !$('.gridster').length) {
+				return;
+			}
+
 			that.$el.off();
-			$('.gridster').find('.gs-w').off('mouseover');
 			$('.gridster').find('span').toggleClass('hidden');
 			$('.gridster').find('div').toggleClass('no-hover');
 			$(document.body).off('dblclick');
@@ -161,6 +165,11 @@ define(['jquery',
 			});
 				
 			$('.' + index).find('div').colorPicker();
+
+			if( $('.freeze-block').hasClass('locked')) {
+				$('.freeze-block').removeClass('locked');
+			}
+
 		};
 		
 		
