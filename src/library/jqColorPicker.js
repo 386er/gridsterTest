@@ -301,7 +301,7 @@
 				toggle();
 			}
 		}).
-		on('focus.a dblclick.a', _selector, toggle).
+		on('focus.a getColor.a', _selector, toggle).
 		on('change.a', _selector, function() {
 			_color.setColor(this.value || '#FFF');
 			_instance.colorPicker.render(true);

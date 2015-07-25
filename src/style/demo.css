@@ -112,12 +112,18 @@ body {
 .cancel-box {
 	position: absolute;
 	color:#424242;
-	right: 10px;
-	top: 10px;
-	font-family: impact;
-	font-style: normal;
+	right: 15px;
+	top: 15px;
 }
 
+.color-box {
+	position: absolute;
+	color:#424242;
+	right: 40px;
+	top: 15px;
+}
+
+.color-box:hover,
 .cancel-box:hover{
 	color: gray;
 }

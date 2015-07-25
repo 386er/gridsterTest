@@ -39,9 +39,10 @@ define(['jquery',
 			'click .addBlock': 'bindAddButton',
 			'click .freeze-block': 'bindFreezeButton',
 			'click .cancel-box': 'bindCancelButton',
+			'click .color-box' : 'triggerColorPick',
 			'mouseover .gs-w': 'showCancelButton',
 			'mouseleave .gs-w': 'hideCancelButton',
-			'click .selector-box': 'bindBox'
+			'click .selector-box': 'bindBox',
 		};
 		
 		that.widgetsConfiguration = {
@@ -77,7 +78,11 @@ define(['jquery',
 			]	
 		};
 
-		that.widgetTemplate = '<div><i class="hidden cancel-box fa fa-times"></i></div>';
+		that.widgetTemplate = 
+							'<div>' +
+								'<i class="hidden cancel-box fa fa-times"></i>' +
+								'<i class="hidden color-box fa fa-paint-brush"></i>' +
+							'</div>';
 
 		
 		that.selecterTemplate = 
@@ -99,16 +104,23 @@ define(['jquery',
 
 		that.showCancelButton = function(event) {
 			$(event.target).find('.cancel-box').removeClass('hidden');
+			$(event.target).find('.color-box').removeClass('hidden');
 		};
 		
 
 		that.hideCancelButton = function(event) {
 			$(event.target).find('.cancel-box').addClass('hidden');
+			$(event.target).find('.color-box').addClass('hidden');
 		};			
 
 		that.bindGridsterToElement = function(index) {
 			that.gridster[index] = $(".gridster > ul." + index).gridster(that.gridsterConfiguration).data('gridster');
-		};	
+		};
+
+
+		that.triggerColorPick = function(event) {
+			$(event.target).trigger('getColor');
+		}
 
 
 		that.bindAddButton = function() {
