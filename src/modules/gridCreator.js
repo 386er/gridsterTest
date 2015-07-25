@@ -75,11 +75,13 @@ define(['jquery',
 			
 		that.selecterTemplate = 
 						'<div class="placeholder-box" style="left:10px">' +
-						'<a class="selector-box" data-key="1">1</a>' +
-						'<a class="selector-box" data-key="2">2</a>' +
-						'<a class="selector-box" data-key="3">3</a>' +
-						'<a class="selector-box" data-key="4">4</a>' +
-						'<a class="selector-box" data-key="5">5</a>' +
+							'<div class="button-wrapper">' +
+								'<a class="selector-box" data-key="1">1</a>' +
+								'<a class="selector-box" data-key="2">2</a>' +
+								'<a class="selector-box" data-key="3">3</a>' +
+								'<a class="selector-box" data-key="4">4</a>' +
+								'<a class="selector-box" data-key="5">5</a>' +
+							'</div>' +
 						'</div>'; 
 
 						
@@ -153,7 +155,7 @@ define(['jquery',
 				index = that.data.currentElement,
 				html = Mustache.to_html(that.gridTemplate, that.data),
 				numOfElements = parseInt(event.target.dataset.key),
-				parent = $(event.target.parentElement);
+				parent = $(event.target.parentElement.parentElement);
 				
 			parent.removeClass('placeholder-box');
 			parent.addClass('gridster')
