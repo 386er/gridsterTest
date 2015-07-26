@@ -103,6 +103,8 @@ define(['jquery',
 		that.data = {'currentElement' : 0};
 
 		that.showCancelButton = function(event) {
+			$('.cancel-box').addClass('hidden');
+			$('.color-box').addClass('hidden');
 			$(event.target).find('.cancel-box').removeClass('hidden');
 			$(event.target).find('.color-box').removeClass('hidden');
 		};
