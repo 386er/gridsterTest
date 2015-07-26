@@ -23,7 +23,7 @@ define(['jquery',
 		that.el ='.wrapper';
 
 		that.gridsterConfiguration = {
-					widget_margins: [5, 6],
+					widget_margins: [6, 6],
 					widget_base_dimensions: [100, 55],
 					autogenerate_stylesheet: true,
 					resize: {
@@ -36,7 +36,7 @@ define(['jquery',
 		that.gridster = {};
 		
 		that.events = {
-			'click .addBlock': 'bindAddButton',
+			'click .addBlock': 'getNewSelectorBox',
 			'click .freeze-block': 'bindFreezeButton',
 			'click .cancel-box': 'bindCancelButton',
 			'click .color-box' : 'triggerColorPick',
@@ -94,7 +94,9 @@ define(['jquery',
 								'<a class="selector-box" data-key="4">4</a>' +
 								'<a class="selector-box" data-key="5">5</a>' +
 							'</div>' +
-						'</div>'; 
+						'</div>';
+
+
 
 						
 		that.gridTemplate =  '<ul class="{{currentElement}}"></ul>';
@@ -103,8 +105,11 @@ define(['jquery',
 		that.data = {'currentElement' : 0};
 
 		that.showCancelButton = function(event) {
-			$('.cancel-box').addClass('hidden');
-			$('.color-box').addClass('hidden');
+
+			var buttons = event.target.parentElement.children;
+
+			$('.cancel-box').not(buttons).addClass('hidden');
+			$('.color-box').not(buttons).addClass('hidden');
 			$(event.target).find('.cancel-box').removeClass('hidden');
 			$(event.target).find('.color-box').removeClass('hidden');
 		};
@@ -125,7 +130,7 @@ define(['jquery',
 		}
 
 
-		that.bindAddButton = function() {
+		that.getNewSelectorBox = function() {
 			var html = Mustache.to_html(that.selecterTemplate)
 			that.$el.find('.sub-wrapper').append(html);
 		};
