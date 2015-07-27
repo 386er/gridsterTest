@@ -3,11 +3,13 @@ define(['jquery',
 	'backbone',
 	'underscore',
 	'modules/gridCreator',
+	'modules/cellBlockController',
 	'colorpicker'
 ], function($,
 	Backbone,
 	_,
-	GridCreator
+	GridCreator,
+	CellBlockController
 	) {
 
 	var app = {
@@ -15,6 +17,8 @@ define(['jquery',
 		init : function() {
 
 			var gridCreator = new GridCreator();
+			
+			var cellBlockController = new CellBlockController();
 			
 		}
 	};

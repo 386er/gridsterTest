@@ -37,8 +37,8 @@ define(['jquery',
 		
 		that.events = {
 			'click .addBlock': 'getNewSelectorBox',
-			'click .freeze-block': 'bindFreezeButton',
-			'click .cancel-box': 'bindCancelButton',
+			'click .freeze-block': 'freezeBlocks',
+			'click .cancel-box': 'cancelWidget',
 			'click .color-box' : 'triggerColorPick',
 			'mouseover .gs-w': 'showCancelButton',
 			'mouseleave .gs-w': 'hideCancelButton',
@@ -127,7 +127,7 @@ define(['jquery',
 
 		that.triggerColorPick = function(event) {
 			$(event.target).trigger('getColor');
-		}
+		};
 
 
 		that.getNewSelectorBox = function() {
@@ -136,22 +136,16 @@ define(['jquery',
 		};
 		
 		
-		that.bindFreezeButton = function() {
+		that.freezeBlocks = function() {
 
 			if ( !$('.gridster').length) {
 				return;
 			}
 
 			that.$el.off();
-			that.$el.find('.placeholder-box').remove();
-			$('.gridster').find('span').toggleClass('hidden');
-			$('.gridster').find('div').toggleClass('no-hover');
-			$(document.body).off('dblclick');
-			$('.addBlock').toggleClass('hidden');
-			$('.freeze-block').toggleClass('hidden');
-			$('.gridster ul').css({'background-color':'transparent'});
+			$(document.body).off('dblclick');		
+			that.removeStylingfromBlocks();
 
-			
 			var keys = _.keys(that.gridster);
 			keys.forEach(function(key){
 				if (that.gridster[key] !== undefined) {
@@ -160,8 +154,21 @@ define(['jquery',
 			})
 		};
 		
+
 		
-		that.bindCancelButton = function(event) {
+		that.removeStylingfromBlocks = function() {
+			that.$el.find('.placeholder-box').remove();
+			$('.gridster').find('span').toggleClass('hidden');
+			$('.gridster').find('div').toggleClass('no-hover');
+			$('.gridster').children().css({'border':'transparent'});
+			$('.gs-w').css({'border':'transparent'});
+			$('.addBlock').toggleClass('hidden');
+			$('.freeze-block').toggleClass('hidden');
+			$('.gridster ul').css({'background-color':'transparent'});
+		};
+		
+		
+		that.cancelWidget = function(event) {
 				var 
 					ul = $(event.target).parents('ul'),
 					i = parseInt(ul.attr('class')),
@@ -174,7 +181,6 @@ define(['jquery',
 					if (numOfBlocks < 2){
 						that.$el.find('.freeze-block').addClass('locked');
 					}
-
 					return;
 				}
 
@@ -200,14 +206,12 @@ define(['jquery',
 			$.each(that.widgetsConfiguration[numOfElements], function(i, widget){
 				widget = [that.widgetTemplate].concat(widget)
 				that.gridster[index].add_widget.apply(that.gridster[index], widget)  
-			});
-				
+			});			
 			$('.' + index).find('div').colorPicker();
 
 			if( $('.freeze-block').hasClass('locked')) {
 				$('.freeze-block').removeClass('locked');
 			}
-
 		};
 		
 		

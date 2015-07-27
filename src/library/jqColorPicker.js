@@ -301,7 +301,7 @@
 				toggle();
 			}
 		}).
-		on('focus.a getColor.a', _selector, toggle).
+		on('focus.a getColor.a dblclick.a', _selector, toggle).
 		on('change.a', _selector, function() {
 			_color.setColor(this.value || '#FFF');
 			_instance.colorPicker.render(true);
@@ -315,7 +315,7 @@
 			$elm.data('colorMode', mode[1] ? mode[0].substr(0, 3) : 'HEX').
 			attr('readonly', _options.preventFocus);
 			options.doRender && $elm.
-			css({'background-color': value,
+			css({'background-color': value + '!important',
 				'color': function() {
 					return _color.setColor(value).
 						rgbaMixBGMixCustom.luminance > 0.22 ? '#222' : '#ddd'

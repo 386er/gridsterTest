@@ -8,9 +8,13 @@ require.config({
 		colors: 'library/colors',
 		colorpicker:'library/jqColorpicker',
 		mustache: 'library/mustache',
-		gridster: 'library/jquery.gridster'
+		gridster: 'library/jquery.gridster',
+		d3: 'library/d3'
 	},
 	shim:{
+		d3:{
+			exports:'d3'
+		},
 		colorpicker: {
 			deps: ['jquery','colors'],
 			exports: 'colorpicker'

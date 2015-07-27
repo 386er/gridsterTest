@@ -30,7 +30,9 @@ body {
 /*/
 
 .gridster ul {
-	background-color: #EFEFEF;
+	background-color: transparent;
+	border: 2px dotted #B2B2B2;
+	padding-bottom: 5px;
 }
 
 .gridster div {
@@ -54,6 +56,10 @@ body {
 	transition: opacity .6s;
 
 
+}
+
+.gs-w {
+border: 1px dotted #B2B2B2;
 }
 
 .wrapper {
@@ -139,7 +145,7 @@ body {
 	display:block;
 	position: relative;
 	float:left;
-	color:#D8D8D8;
+	color:gray;
 	margin-right: 40px;
 	width:64px !important;
 	height:64px !important;
@@ -161,7 +167,7 @@ body {
 
 
 .gridster .gs-w {
-	background: #DDD;
+	background: #E6E6E6;
 	cursor: pointer;
 }
 
@@ -172,7 +178,7 @@ body {
 
 .gridster .preview-holder {
 	border: none!important;
-	background: red!important;
+	background: gray!important;
 }
 
 .hidden {
