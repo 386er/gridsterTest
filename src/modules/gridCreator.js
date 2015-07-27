@@ -4,13 +4,15 @@ define(['jquery',
 	'underscore',
 	'mustache',
 	'colorpicker',
-	'gridster'
+	'gridster',
+	'd3'
 ], function($,
 	Backbone,
 	_,
 	Mustache,
 	colorpicker,
-	Gridster
+	Gridster,
+	d3
 	) {
 
 
@@ -152,6 +154,8 @@ define(['jquery',
 					that.gridster[key].disable();
 				}
 			})
+			
+			that.trigger('gridCreated');
 		};
 		
 
@@ -213,7 +217,7 @@ define(['jquery',
 				$('.freeze-block').removeClass('locked');
 			}
 		};
-		
+				
 		
 		that = new (Backbone.View.extend(that))();
 		

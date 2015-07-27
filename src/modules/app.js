@@ -2,23 +2,21 @@
 define(['jquery',
 	'backbone',
 	'underscore',
-	'modules/gridCreator',
-	'modules/cellBlockController',
+	'modules/gridController',
 	'colorpicker'
 ], function($,
 	Backbone,
 	_,
-	GridCreator,
-	CellBlockController
+	GridController
 	) {
 
 	var app = {
 
 		init : function() {
 
-			var gridCreator = new GridCreator();
+			var gridController = new GridController();
 			
-			var cellBlockController = new CellBlockController();
+/* 			gridController.initialize(); */
 			
 		}
 	};

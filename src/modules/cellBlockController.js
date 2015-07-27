@@ -2,11 +2,13 @@
 define(['jquery',
 	'backbone',
 	'underscore',
+	'd3',
 	'modules/cellBlockView',
 	'modules/cellBlockCollection'
 ], function($,
 	Backbone,
 	_,
+	d3,
 	CellBlockView,
 	CellBlockCollection
 	) {
@@ -27,6 +29,15 @@ define(['jquery',
 			});
 			that.cellBlockView = new CellBlockView();
 			that.cellBlockView.assignCollection(that.cellBlockCollection);
+		};
+		
+		
+		that.getAllBlocks = function() {
+			
+			var selection = d3.selectAll('.gs-w');
+			
+			window.alert(selection);
+			
 		};
 		
 
