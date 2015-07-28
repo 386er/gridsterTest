@@ -15,7 +15,6 @@ define(['jquery',
 	var CellBlockView = function() {
 		
 		var that = {};
-/* 		that.className = "svg-wrapper"; */
 		that.helpers = new Helper();
 		
 		
@@ -24,6 +23,7 @@ define(['jquery',
 				cellRange,
 				cells;
 			
+			that.$el.css({'background-color':'transparent'});
 			cellRange = that.collection.determineRowsAndColumns();
 			that.createScales(cellRange);
 			that.createSVG(that.width, that.height);
@@ -35,7 +35,6 @@ define(['jquery',
 
 			
 		that.createSVG = function(width, height) {
-/* 			$('body').append(that.el); */
 			that.svg = d3.select(that.el).append('svg')
 				.attr('width',width)
 				.attr('height', height)

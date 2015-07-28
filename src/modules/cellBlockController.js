@@ -43,7 +43,9 @@ define(['jquery',
 					$element = $(element),
 					height = $element.height(),
 					width = $element.width(),
-					colors = [$element.css('background-color')];
+					color = $element.css('background-color'),
+					bright = d3.rgb(color).brighter().toString(),
+					dark = d3.rgb(color).darker().toString();
 				
 				var collection = new CellBlockCollection();
 				var view = new CellBlockView({el: '.' + className})
@@ -52,7 +54,7 @@ define(['jquery',
 					width: width,
 					height: height,
 					cellSize: 15,
-					colors: [colors, colors]
+					colors: [bright, dark]
 				});
 				
 				view.assignCollection(collection);
