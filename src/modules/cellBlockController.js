@@ -34,9 +34,9 @@ define(['jquery',
 		
 		that.getAllBlocks = function() {
 			
-			var selection = d3.selectAll('.gs-w');
+			var blocks = $('.gs-w');
 			
-			selection[0].forEach(function(element) {
+			blocks.each(function(i, element) {
 				
 				var
 					className = element.classList[0],
@@ -47,8 +47,10 @@ define(['jquery',
 					bright = d3.rgb(color).brighter().toString(),
 					dark = d3.rgb(color).darker().toString();
 				
-				var collection = new CellBlockCollection();
-				var view = new CellBlockView({el: '.' + className})
+
+				var 
+					collection = new CellBlockCollection(),
+					view = new CellBlockView({el: '.' + className})
 				
 				collection.assignProperties({
 					width: width,
