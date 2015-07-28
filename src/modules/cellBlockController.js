@@ -51,8 +51,8 @@ define(['jquery',
 				collection.assignProperties({
 					width: width,
 					height: height,
-					cellSize: 10,
-					colors: []
+					cellSize: 15,
+					colors: [colors, colors]
 				});
 				
 				view.assignCollection(collection);
