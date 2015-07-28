@@ -81,7 +81,7 @@ define(['jquery',
 		};
 
 		that.widgetTemplate = 
-							'<div>' +
+							'<div class="{{index}}">' +
 								'<i class="hidden cancel-box fa fa-times"></i>' +
 								'<i class="hidden color-box fa fa-paint-brush"></i>' +
 							'</div>';
@@ -208,7 +208,8 @@ define(['jquery',
 			that.bindGridsterToElement(index);
 
 			$.each(that.widgetsConfiguration[numOfElements], function(i, widget){
-				widget = [that.widgetTemplate].concat(widget)
+				var template = Mustache.to_html(that.widgetTemplate, {'index': 'indx_' + index + '_' + (i + 1)});
+				widget = [template].concat(widget)
 				that.gridster[index].add_widget.apply(that.gridster[index], widget)  
 			});			
 			$('.' + index).find('div').colorPicker();

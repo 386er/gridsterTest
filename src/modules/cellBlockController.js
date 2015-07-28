@@ -20,7 +20,7 @@ define(['jquery',
 		
 		that.initialize = function() {
 		
-			that.cellBlockCollection = new CellBlockCollection()
+/* 			that.cellBlockCollection = new CellBlockCollection()
 			that.cellBlockCollection.assignProperties({
 				width: 970,
 				height: 500,
@@ -28,7 +28,7 @@ define(['jquery',
 				colors: []
 			});
 			that.cellBlockView = new CellBlockView();
-			that.cellBlockView.assignCollection(that.cellBlockCollection);
+			that.cellBlockView.assignCollection(that.cellBlockCollection); */
 		};
 		
 		
@@ -36,7 +36,33 @@ define(['jquery',
 			
 			var selection = d3.selectAll('.gs-w');
 			
-			window.alert(selection);
+			selection[0].forEach(function(element) {
+				
+				var
+					className = element.classList[0],
+					$element = $(element),
+					height = $element.height(),
+					width = $element.width(),
+					colors = [$element.css('background-color')];
+				
+				var collection = new CellBlockCollection();
+				var view = new CellBlockView({el: '.' + className})
+				
+				collection.assignProperties({
+					width: width,
+					height: height,
+					cellSize: 10,
+					colors: []
+				});
+				
+				view.assignCollection(collection);
+				
+				view.render();
+				
+			})
+
+			
+
 			
 		};
 		

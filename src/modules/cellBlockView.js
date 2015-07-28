@@ -15,7 +15,7 @@ define(['jquery',
 	var CellBlockView = function() {
 		
 		var that = {};
-		that.className = "svg-wrapper";
+/* 		that.className = "svg-wrapper"; */
 		that.helpers = new Helper();
 		
 		
@@ -35,7 +35,7 @@ define(['jquery',
 
 			
 		that.createSVG = function(width, height) {
-			$('body').append(that.el);
+/* 			$('body').append(that.el); */
 			that.svg = d3.select(that.el).append('svg')
 				.attr('width',width)
 				.attr('height', height)
