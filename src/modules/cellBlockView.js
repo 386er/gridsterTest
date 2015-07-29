@@ -12,7 +12,9 @@ define(['jquery',
 
 	var CellBlockView = function() {
 		
-		var that = {};	
+		var that = {};
+
+		that.instanceID = 'view' + Date.now();
 		
 		that.render = function() {
 			var 
@@ -85,7 +87,7 @@ define(['jquery',
 			
 			that.selection.enter()
 				.append('rect')
-				.attr('class', function(d) {return d.class;})
+				.attr('class', function(d) {return d.class + ' ' + that.instanceID;})
 				.attr('id', function(d) {return d.id})
 				.attr('width', function(d) {return d.width;})
 				.attr('height', function(d) {return d.height;})
@@ -181,8 +183,8 @@ define(['jquery',
 		that.pickRandomCell = function() {
 			
 			var 
-				cells = d3.selectAll('.cell')[0], 
-				numOfCells = d3.selectAll('.cell')[0].length,
+				cells = d3.selectAll('.' + that.instanceID)[0], 
+				numOfCells = cells.length,
 				randomNumber = Math.floor(Math.random() * numOfCells),
 				randomCell = cells[randomNumber];
 			
@@ -202,8 +204,8 @@ define(['jquery',
 				return;
 			}
 			
-			var darker = d3.rgb(color).darker();
-			var brighter = d3.rgb(color).brighter();
+			var darker = d3.rgb(color).darker().darker();
+			var brighter = d3.rgb(color).brighter().brighter();
 			
 			that.colorScale = d3.scale.linear()
 				.domain([0,1])
