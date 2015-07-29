@@ -22,6 +22,7 @@ define(['jquery',
 			that.$el.css({'background-color':'transparent'});
 			cellRange = that.collection.determineRowsAndColumns();
 			that.createScales(cellRange);
+			that.createColorScale();
 			that.createSVG(that.width, that.height);
 			that.drawBackground(cellRange);
 			that.collection.createCellData(cellRange);
@@ -90,8 +91,8 @@ define(['jquery',
 				.attr('height', function(d) {return d.height;})
 				.attr('x', function(d) {return that.xScale(d.x);})
 				.attr('y', function(d) {return that.yScale(d.y);})
-				.attr('opacity',0.8)
-				.style('fill', function(d) {return that.randomColorScale(d.color);});
+				.attr('opacity',1)
+				.style('fill', function(d) {return that.getColor(d.colorValue);});
 			
 		};
 										
@@ -100,7 +101,7 @@ define(['jquery',
 			
 			var cellToBeChanged = that.pickRandomCell();
 			var ranNum = Math.random();
-			var cellColor = that.randomColorScale(ranNum);
+			var cellColor = that.getColor(ranNum);
 			
 			d3.select(cellToBeChanged)
 				.transition().duration(800)
@@ -193,10 +194,43 @@ define(['jquery',
 			return sign;
 		};
 		
-		
-		that.getColorScale = function() {
-			return that.colorScale;	
+		that.createColorScale = function() {
+			
+			var color = that.color;
+			
+			if (color === 'rgb(230, 230, 230)') {
+				return;
+			}
+			
+			var darker = d3.rgb(color).darker();
+			var brighter = d3.rgb(color).brighter();
+			
+			that.colorScale = d3.scale.linear()
+				.domain([0,1])
+				.range([darker, brighter]);
 		};
+		
+		
+		that.getColor = function(ranNum) {
+			
+			if (that.colorScale) {
+				var perc = Math.random();
+				
+				if (perc > 0.95) {
+					return that.randomColorScale(ranNum)
+				}
+				
+				return that.colorScale(ranNum);
+			}
+			
+			return that.randomColorScale(ranNum);
+			
+		}
+		
+		
+/* 		that.getColorScale = function() {
+			return that.colorScale;	
+		}; */
 		
 		
 		that.randomColorScale = function(ranNum) {
@@ -214,6 +248,7 @@ define(['jquery',
 			that.width = that.collection.getWidth();
 			that.height = that.collection.getHeight();
 			that.cellSize = that.collection.getCellSize();
+			that.color = that.collection.getColor();
 		};
 			
 		that = new (Backbone.View.extend(that))();

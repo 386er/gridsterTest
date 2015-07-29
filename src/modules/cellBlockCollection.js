@@ -16,7 +16,7 @@ define(['jquery',
 			that.width = parameterObj.width;
 			that.height = parameterObj.height;
 			that.cellSize = parameterObj.cellSize;
-			that.colors = parameterObj.colors;			
+			that.color = parameterObj.color;			
 		};
 		
 		that.determineRowsAndColumns = function() {
@@ -42,7 +42,7 @@ define(['jquery',
 					cellObject.height = that.cellSize;
 					cellObject.x = j;
 					cellObject.y = i;
-					cellObject.color = Math.random();
+					cellObject.colorValue = Math.random();
 					cells.push(cellObject);
 				});
 			});
@@ -77,6 +77,10 @@ define(['jquery',
 		
 		that.getWidth = function() {
 			return that.width;
+		};
+		
+		that.getColor = function() {
+			return that.color;
 		};
 		
 		that.getHeight = function() {
