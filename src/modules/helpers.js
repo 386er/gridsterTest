@@ -18,12 +18,6 @@ define(['jquery',
 			return rgb;
 		};
 		
-		
-		that.getPlusOrMinus = function() {
-			var sign = Math.random() < 0.5 ? -1 : 1;
-			return sign;
-		};
-		
 				
 		return that;
 	};

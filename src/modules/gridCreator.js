@@ -25,7 +25,7 @@ define(['jquery',
 		that.el ='.wrapper';
 
 		that.gridsterConfiguration = {
-					widget_margins: [6, 6],
+					widget_margins: [5, 5],
 					widget_base_dimensions: [100, 55],
 					autogenerate_stylesheet: true,
 					resize: {
@@ -168,6 +168,8 @@ define(['jquery',
 			$('.addBlock').toggleClass('hidden');
 			$('.freeze-block').toggleClass('hidden');
 			$('.gridster ul').css({'background-color':'transparent'});
+			$('i').remove();
+			$('span').remove();
 		};
 		
 		

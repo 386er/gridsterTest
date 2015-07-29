@@ -1,22 +1,17 @@
 define(['jquery',
 	'backbone',
 	'underscore',
-	'd3',
-	'modules/helpers'
+	'd3'
 ], function($,
 	Backbone,
 	_,
-	d3,
-	Helper
+	d3
 	) {
 		
 	var CellCollection = function(parameterObj) { 	
 	
-
 		var that = {};
-		that.helpers = new Helper();
-		that.COLOR_RANGE_MULTIPLICATOR = 2;
-		
+	
 		that.assignProperties = function(parameterObj) {
 			that.width = parameterObj.width;
 			that.height = parameterObj.height;
@@ -36,11 +31,9 @@ define(['jquery',
 		
 				
 		that.createCellData = function(range) {
-			that.determineColors();
 			var cells = [];   
 			_.each(range.vertical, function(i) {  
 				_.each(range.horizontal, function(j){        
-					var cellColor = that.helpers.createRandomRGB();
 					var cellObject = {};
 					cellObject.class = 'cell';
 					cellObject.id = 'x' + j + 'y' + 'i' + Math.floor(Math.random() * 10000) ;
@@ -49,23 +42,12 @@ define(['jquery',
 					cellObject.height = that.cellSize;
 					cellObject.x = j;
 					cellObject.y = i;
-					cellObject.color = cellColor;
+					cellObject.color = Math.random();
 					cells.push(cellObject);
 				});
 			});
 
 			that.add(cells);
-		};
-		
-		
-		that.determineColors = function() {
-		
-			if (that.colors.length === 0) {
-				that.getColor = that.helpers.createRandomRGB;
-			}
-			else {
-				that.getColor = that.getCustomColor;
-			}
 		};
 		
 		
@@ -92,14 +74,6 @@ define(['jquery',
 			return cellModels;
 		};
 			
-		
-		that.getCustomColor = function() {
-		
-			var numOfColors = that.colors.length;
-			var ranNum = Math.random();
-			
-			return that.colorScale(ranNum);
-		};
 		
 		that.getWidth = function() {
 			return that.width;

@@ -2,21 +2,17 @@ define(['jquery',
 	'backbone',
 	'underscore',
 	'd3',
-	'modules/helpers',
 	'modules/cellBlockCollection'
 ], function($,
 	Backbone,
 	_,
 	d3,
-	Helper,
 	CellCollection
 	) {
 
 	var CellBlockView = function() {
 		
-		var that = {};
-		that.helpers = new Helper();
-		
+		var that = {};	
 		
 		that.render = function() {
 			var 
@@ -37,19 +33,19 @@ define(['jquery',
 		that.createSVG = function(width, height) {
 			that.svg = d3.select(that.el).append('svg')
 				.attr('width',width)
-				.attr('height', height)
-				.attr("transform", "translate(100,100)");
+				.attr('height', height);
 		};
 												
 		that.drawBackground = function(range) {
 						
 			that.bgWidth = ((range.horizontal.length - 2) * (that.cellSize + 1));
 			that.bgHeight = ((range.vertical.length - 2) * (that.cellSize + 1));
+			var ranNum = Math.random();
 			
 			that.background = that.svg.append('rect')
 			.attr('width',that.bgWidth)
 			.attr('height', that.bgHeight)
-			.style('fill', that.helpers.createRandomRGB())
+			.style('fill', that.randomColorScale(ranNum))
 			.attr('opacity', 0.175)
 			.attr('transform', 'translate('+ that.cellSize + ',' + that.cellSize + ')');
 		};
@@ -95,7 +91,7 @@ define(['jquery',
 				.attr('x', function(d) {return that.xScale(d.x);})
 				.attr('y', function(d) {return that.yScale(d.y);})
 				.attr('opacity',0.8)
-				.style('fill', function(d) {return d.color;});
+				.style('fill', function(d) {return that.randomColorScale(d.color);});
 			
 		};
 										
@@ -103,7 +99,8 @@ define(['jquery',
 		that.changeColorOfACell = function(){
 			
 			var cellToBeChanged = that.pickRandomCell();
-			var cellColor = that.helpers.createRandomRGB();
+			var ranNum = Math.random();
+			var cellColor = that.randomColorScale(ranNum);
 			
 			d3.select(cellToBeChanged)
 				.transition().duration(800)
@@ -173,8 +170,8 @@ define(['jquery',
 				currentX = cell.get('x'),
 				currentY = cell.get('y');
 				
-			coordinates.x = currentX + that.helpers.getPlusOrMinus();
-			coordinates.y = currentY + that.helpers.getPlusOrMinus();
+			coordinates.x = currentX + that.getPlusOrMinus();
+			coordinates.y = currentY + that.getPlusOrMinus();
 			
 			return coordinates;
 		};	
@@ -191,9 +188,24 @@ define(['jquery',
 			return randomCell;
 		};
 		
+		that.getPlusOrMinus = function() {
+			var sign = Math.random() < 0.5 ? -1 : 1;
+			return sign;
+		};
+		
 		
 		that.getColorScale = function() {
 			return that.colorScale;	
+		};
+		
+		
+		that.randomColorScale = function(ranNum) {
+				var n = Math.floor(ranNum*255*255*255);
+				var hex = Number(n).toString(16);
+				while(hex.length < 6) {
+					hex = "0"+hex;
+				}
+				return '#' + hex;
 		};
 		
 		
