@@ -154,7 +154,6 @@ define(['jquery',
 					that.gridster[key].disable();
 				}
 			})
-			
 			that.trigger('gridCreated');
 		};
 		
@@ -212,7 +211,7 @@ define(['jquery',
 				widget = [template].concat(widget)
 				that.gridster[index].add_widget.apply(that.gridster[index], widget)  
 			});			
-			$('.' + index).find('div').colorPicker();
+			$('.' + index).find('div').colorPicker({animationSpeed:0});
 
 			if( $('.freeze-block').hasClass('locked')) {
 				$('.freeze-block').removeClass('locked');

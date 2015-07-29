@@ -62,10 +62,8 @@ define(['jquery',
 				view.assignCollection(collection);
 				
 				view.render();
-				
+							
 			})
-
-			
 
 			
 		};
