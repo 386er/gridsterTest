@@ -204,12 +204,12 @@ define(['jquery',
 				return;
 			}
 			
-			var darker = d3.rgb(color).darker().darker();
-			var brighter = d3.rgb(color).brighter().brighter();
+			var bright = d3.rgb(color);
+			var superBright = bright.brighter();
 			
 			that.colorScale = d3.scale.linear()
-				.domain([0,1])
-				.range([darker, brighter]);
+				.domain([0, 0.5, 1])
+				.range([color, bright, superBright]);
 		};
 		
 		

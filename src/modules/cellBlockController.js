@@ -20,15 +20,6 @@ define(['jquery',
 		
 		that.initialize = function() {
 		
-/* 			that.cellBlockCollection = new CellBlockCollection()
-			that.cellBlockCollection.assignProperties({
-				width: 970,
-				height: 500,
-				cellSize: 15,
-				colors: []
-			});
-			that.cellBlockView = new CellBlockView();
-			that.cellBlockView.assignCollection(that.cellBlockCollection); */
 		};
 		
 		
