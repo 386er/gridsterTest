@@ -46,8 +46,8 @@ define(['jquery',
 			var ranNum = Math.random();
 			
 			that.background = that.svg.append('rect')
-			.attr('width',that.bgWidth)
-			.attr('height', that.bgHeight)
+			.attr('width',that.bgWidth + 1) //TODO find better, more explanatory way of computing height and width
+			.attr('height', that.bgHeight + 1)
 			.style('fill', that.randomColorScale(ranNum))
 			.attr('opacity', 0.175)
 			.attr('transform', 'translate('+ that.cellSize + ',' + that.cellSize + ')');
@@ -55,7 +55,8 @@ define(['jquery',
 						
 						
 		that.changeBackgroundColor = function() {
-			that.background.transition().duration(1500).style('fill', that.helpers.createRandomRGB());
+			var ranNum = Math.random();
+			that.background.transition().duration(1500).style('fill', that.randomColorScale(ranNum));
 		};
 							
 							
@@ -205,11 +206,14 @@ define(['jquery',
 			}
 			
 			var bright = d3.rgb(color);
-			var superBright = bright.brighter();
+			var sBright = bright.brighter();
+			var ssBright = sBright.brighter();
+			var sssBright = ssBright.brighter();
+			var ssssBright = sssBright.brighter();
 			
 			that.colorScale = d3.scale.linear()
-				.domain([0, 0.5, 1])
-				.range([color, bright, superBright]);
+				.domain([0, 0.5, 0.65, 0.8, 0.9, 1])
+				.range([color, bright, sBright, ssBright, sssBright, ssssBright]);
 		};
 		
 		
@@ -218,7 +222,7 @@ define(['jquery',
 			if (that.colorScale) {
 				var perc = Math.random();
 				
-				if (perc > 0.95) {
+				if (perc > 0.975) {
 					return that.randomColorScale(ranNum)
 				}
 				
