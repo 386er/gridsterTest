@@ -61,7 +61,7 @@ define(['jquery',
 		};
 		
 
-		that.render =  function() {
+/* 		that.render =  function() {
 			
 				
 			that.cellBlockView.render();
@@ -74,7 +74,7 @@ define(['jquery',
 			window.setInterval(function(){that.cellBlockView.changeBackgroundColor();}, 1500);
 			window.setInterval(function(){that.cellBlockView.moveCell('x');}, 50);
 			window.setInterval(function(){that.cellBlockView.moveCell('y');}, 50);
-		}
+		} */
 		
 		return that;
 		
