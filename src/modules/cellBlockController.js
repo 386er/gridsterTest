@@ -52,8 +52,8 @@ define(['jquery',
 				view.render();
 				window.setInterval(function(){view.changeColorOfACell();}, 1);
 				window.setInterval(function(){view.changeBackgroundColor();}, 1500);
-/* 				window.setInterval(function(){view.moveCell('x');}, 1800);
-				window.setInterval(function(){view.moveCell('y');}, 1800); */
+				window.setInterval(function(){view.moveCell('x');}, 200);
+				window.setInterval(function(){view.moveCell('y');}, 200);
 							
 			})
 

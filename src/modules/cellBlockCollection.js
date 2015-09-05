@@ -60,7 +60,7 @@ define(['jquery',
 				modelID = model.get('id'),
 				rect = d3.select('#' + modelID);
 			
-			if (rect.attr('class') === 'cell') {
+			if (rect.classed('cell') === true) {
 				return model;
 			}
 			
