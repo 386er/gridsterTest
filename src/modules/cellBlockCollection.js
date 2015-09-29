@@ -21,8 +21,8 @@ define(['jquery',
 		
 		that.determineRowsAndColumns = function() {
 			var range = {};
-			var numberOfCellsPerRow = Math.floor( that.width / (that.cellSize + 1) ) ;
-			var numberOfCellsPerColumn =  Math.floor( that.height / (that.cellSize + 1) );
+			var numberOfCellsPerRow = Math.floor( that.width / (that.cellSize )); // + 1) ) ;
+			var numberOfCellsPerColumn =  Math.floor( that.height / (that.cellSize)); // + 1) );
 			range.horizontal = _.range(numberOfCellsPerRow);
 			range.vertical = _.range(numberOfCellsPerColumn);
 			

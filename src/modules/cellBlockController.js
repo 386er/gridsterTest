@@ -43,7 +43,7 @@ define(['jquery',
 				collection.assignProperties({
 					width: width,
 					height: height,
-					cellSize: 15,
+					cellSize: 12,
 					color: color
 				});
 				

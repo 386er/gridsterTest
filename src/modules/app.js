@@ -15,9 +15,7 @@ define(['jquery',
 		init : function() {
 
 			var gridController = new GridController();
-			
-/* 			gridController.initialize(); */
-			
+						
 		}
 	};
 

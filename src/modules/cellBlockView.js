@@ -41,8 +41,8 @@ define(['jquery',
 												
 		that.drawBackground = function(range) {
 						
-			that.bgWidth = ((range.horizontal.length - 2) * (that.cellSize + 1));
-			that.bgHeight = ((range.vertical.length - 2) * (that.cellSize + 1));
+			that.bgWidth = ((range.horizontal.length - 2) * (that.cellSize )); // + 1));
+			that.bgHeight = ((range.vertical.length - 2) * (that.cellSize));// + 1));
 			var ranNum = Math.random();
 			
 			that.background = that.svg.append('rect')
@@ -64,12 +64,12 @@ define(['jquery',
 			var xDomain = range.horizontal;
 			that.xDomain = xDomain;
 			var xRange = _.map(xDomain, function(position) {
-				return position * that.cellSize + position * 1;
+				return position * that.cellSize; // + position * 1;
 			});
 			var yDomain = range.vertical;
 			that.yDomain = yDomain;
 			var yRange = _.map(yDomain, function(position) {
-				return position * that.cellSize + position * 1;
+				return position * that.cellSize; // + position * 1;
 			});
 			
 			that.xScale = d3.scale.ordinal()
