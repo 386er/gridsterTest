@@ -41,22 +41,23 @@ define(['jquery',
 												
 		that.drawBackground = function(range) {
 						
-			that.bgWidth = ((range.horizontal.length - 2) * (that.cellSize )); // + 1));
-			that.bgHeight = ((range.vertical.length - 2) * (that.cellSize));// + 1));
+			that.bgWidth = ((range.horizontal.length) * (that.cellSize ));
+			that.bgHeight = ((range.vertical.length) * (that.cellSize));
 			var ranNum = Math.random();
 			
 			that.background = that.svg.append('rect')
-			.attr('width',that.bgWidth + 1) //TODO find better, more explanatory way of computing height and width
-			.attr('height', that.bgHeight + 1)
+			.attr('width',that.bgWidth) 
+			.attr('height', that.bgHeight)
 			.style('fill', that.randomColorScale(ranNum))
-			.attr('opacity', 0.175)
-			.attr('transform', 'translate('+ that.cellSize + ',' + that.cellSize + ')');
+			.attr('opacity', 0.5);
 		};
 						
 						
 		that.changeBackgroundColor = function() {
 			var ranNum = Math.random();
-			that.background.transition().duration(1500).style('fill', that.randomColorScale(ranNum));
+			var cellColor = that.getColor(ranNum);
+			
+			that.background.transition().duration(1500).style('fill', cellColor);
 		};
 							
 							
@@ -64,12 +65,12 @@ define(['jquery',
 			var xDomain = range.horizontal;
 			that.xDomain = xDomain;
 			var xRange = _.map(xDomain, function(position) {
-				return position * that.cellSize; // + position * 1;
+				return position * that.cellSize;
 			});
 			var yDomain = range.vertical;
 			that.yDomain = yDomain;
 			var yRange = _.map(yDomain, function(position) {
-				return position * that.cellSize; // + position * 1;
+				return position * that.cellSize;
 			});
 			
 			that.xScale = d3.scale.ordinal()
@@ -232,12 +233,7 @@ define(['jquery',
 			return that.randomColorScale(ranNum);
 			
 		}
-		
-		
-/* 		that.getColorScale = function() {
-			return that.colorScale;	
-		}; */
-		
+			
 		
 		that.randomColorScale = function(ranNum) {
 				var n = Math.floor(ranNum*255*255*255);
