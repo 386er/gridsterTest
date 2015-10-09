@@ -44,7 +44,9 @@ define(['jquery',
 			'click .color-box' : 'triggerColorPick',
 			'mouseover .gs-w': 'showCancelButton',
 			'mouseleave .gs-w': 'hideCancelButton',
-			'click .selector-box': 'bindBox',
+			'mouseover .selector-box': 'highlightBoxes',
+			'mouseleave .selector-box': 'unhighlightBoxes',
+			'click .selector-box': 'bindBox'
 		};
 		
 		that.widgetsConfiguration = {
@@ -77,7 +79,62 @@ define(['jquery',
 					[1, 3],
 					[1, 3],
 					[3, 2]
-			]	
+			],
+
+			6:  [
+					[3, 1],
+					[1, 3],
+					[1, 3],
+					[1, 3],
+					[3, 2],
+					[6, 1]
+			],
+
+			7:  [
+					[3, 1],
+					[1, 3],
+					[1, 3],
+					[1, 3],
+					[3, 2],
+					[3, 1],
+					[3, 1]
+			],
+
+			8:  [
+					[3, 1],
+					[1, 3],
+					[1, 3],
+					[1, 3],
+					[3, 2],
+					[3, 1],
+					[3, 1],
+					[6, 1]
+			],
+
+			9:  [
+					[3, 1],
+					[1, 3],
+					[1, 3],
+					[1, 3],
+					[3, 2],
+					[3, 1],
+					[3, 1],
+					[3, 1],
+					[3, 1]
+			],
+
+			10:  [
+					[3, 1],
+					[1, 3],
+					[1, 3],
+					[1, 3],
+					[3, 2],
+					[3, 1],
+					[3, 1],
+					[3, 1],
+					[3, 1],
+					[6, 1]
+			]				
 		};
 
 		that.widgetTemplate = 
@@ -87,18 +144,16 @@ define(['jquery',
 							'</div>';
 
 		
-		that.selecterTemplate = 
+		that.selectorTemplate = 
 						'<div class="placeholder-box" style="left:10px">' +
 							'<div class="button-wrapper">' +
-								'<a class="selector-box" data-key="1">1</a>' +
-								'<a class="selector-box" data-key="2">2</a>' +
-								'<a class="selector-box" data-key="3">3</a>' +
-								'<a class="selector-box" data-key="4">4</a>' +
-								'<a class="selector-box" data-key="5">5</a>' +
+								'{{#selectorbox}}' +
+								'<a class="selector-box {{.}}" data-key="{{.}}"></a>' +
+								'{{/selectorbox}}' +
 							'</div>' +
 						'</div>';
 
-
+		that.selectorData = {'selectorbox': [1,2,3,4,5,6,7,8,9,10]}
 
 						
 		that.gridTemplate =  '<ul class="{{currentElement}}"></ul>';
@@ -133,9 +188,29 @@ define(['jquery',
 
 
 		that.getNewSelectorBox = function() {
-			var html = Mustache.to_html(that.selecterTemplate)
+			var html = Mustache.render(that.selectorTemplate, that.selectorData)
 			that.$el.find('.sub-wrapper').append(html);
 		};
+		
+		that.highlightBoxes = function() {
+			var 
+				box = event.target,
+				numOfBoxes = box.dataset.key,
+				rangeBoxes = _.range(1,parseInt(numOfBoxes) + 1),
+				classes = _.map(rangeBoxes, function(num){ return '.' + num ; });
+				
+			_.forEach(classes, function(entry){
+				$(entry).addClass('select');
+			})	
+				console.log(classes)
+				
+			
+		}
+		
+		that.unhighlightBoxes = function() {
+			
+			$('.select').removeClass('select');
+		}
 		
 		
 		that.freezeBlocks = function() {

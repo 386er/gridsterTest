@@ -136,7 +136,7 @@ border: 1px dotted #B2B2B2;
 
 .button-wrapper {
 	position: relative;
- 	margin-top: 30px;
+ 	margin-top: 10px;
  	margin-left: 65px;
 }
 
@@ -146,15 +146,18 @@ border: 1px dotted #B2B2B2;
 	position: relative;
 	float:left;
 	color:gray;
-	margin-right: 40px;
-	width:64px !important;
-	height:64px !important;
+	margin: 0px 70px 20px 0px;
+	width:40px !important;
+	height:40px !important;
 	font-size:50px;
-	border-radius:50px;
 	text-align: center;
 	font-weight: bold;
 	padding: 6px 3px 0 3px;
+}
 
+.selector-box.select {
+	background-color: gray;
+	
 }
 
 
