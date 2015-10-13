@@ -195,12 +195,13 @@ define(['jquery',
 		that.highlightBoxes = function() {
 			var 
 				box = event.target,
+				outerBox = $(event.target).parent(),
 				numOfBoxes = box.dataset.key,
 				rangeBoxes = _.range(1,parseInt(numOfBoxes) + 1),
 				classes = _.map(rangeBoxes, function(num){ return '.' + num ; });
 				
 			_.forEach(classes, function(entry){
-				$(entry).addClass('select');
+				$(outerBox).find(entry).addClass('select');
 			})	
 				console.log(classes)
 				
